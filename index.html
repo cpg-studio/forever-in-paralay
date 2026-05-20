@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever In Parlay | High-Yield Sports Betting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0B1027',      
+                            surface: '#131A3A',   
+                            border: '#1E2954',    
+                            blue: '#60A5FA',      
+                            amber: '#F5B93D',     
+                            amberHover: '#E0A630',
+                            cream: '#FDFBF7'      
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'marquee2': 'marquee2 25s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        marquee2: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B1027;
+            color: #FDFBF7;
+            overflow-x: hidden;
+        }
+        
+        /* Subtle glowing effects */
+        .glow-amber { box-shadow: 0 0 25px rgba(245, 185, 61, 0.25); }
+        .glow-amber-strong { box-shadow: 0 0 40px rgba(245, 185, 61, 0.4); }
+        .glow-blue { box-shadow: 0 0 30px rgba(96, 165, 250, 0.15); }
+        
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(19, 26, 58, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(30, 41, 84, 0.8);
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Editorial Image Overlay for depth */
+        .img-gradient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 16, 39, 0.8) 0%, transparent 60%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-brand-cream selection:bg-brand-blue selection:text-brand-navy">
+
+    <nav class="fixed w-full z-50 glass border-b-0 border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="w-1/3 hidden md:block"></div>
+
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <a href="#" class="flex items-center group">
+                        <div class="h-10 w-32 bg-brand-navy border border-brand-border rounded flex items-center justify-center text-xs font-bold text-brand-blue tracking-widest uppercase transition duration-300 group-hover:border-brand-blue glow-blue">
+                            [ LOGO ]
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex w-1/3 justify-end items-center space-x-8">
+                    <a href="#philosophy" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Philosophy</a>
+                    <a href="#lifestyle" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Community</a>
+                    <a href="#pricing" class="px-5 py-2 rounded-full bg-brand-blue/10 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-brand-navy transition text-sm font-semibold">Join Now</a>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-blue/20 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-amber/10 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+            
+            <div class="w-full lg:w-1/2 text-center lg:text-left reveal active">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-blue text-xs font-semibold tracking-wide uppercase mb-6">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+                    </span>
+                    Now accepting new members
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-brand-cream leading-[1.1]">
+                    Stop Gambling. <br />
+                    Start <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-amber to-yellow-200">Investing.</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-400 mb-10 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+                    Join an elite community focused on long-term edge, premium big-line parlays, and mathematical bankroll growth. Leave the guessing to the amateurs.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-bold rounded-lg transition transform hover:-translate-y-1 glow-amber flex items-center justify-center gap-2">
+                        Get Your Access Pass
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 reveal active delay-200 relative">
+                <div class="relative rounded-2xl overflow-hidden border border-brand-border glow-blue transform perspective-1000 rotate-y-[-5deg] hover:rotate-y-0 transition-transform duration-700">
+                    <img src="https://placehold.co/800x600/131A3A/60A5FA?text=Platform+Vibe+Image" alt="Platform Dashboard" class="w-full h-auto object-cover opacity-90">
+                    
+                    <div class="absolute bottom-6 left-6 glass px-4 py-3 rounded-lg flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase tracking-wider">Average ROI</p>
+                            <p class="text-lg font-bold text-brand-cream">+24.5% Monthly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="results" class="py-16 bg-brand-surface/40 border-y border-brand-border overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-brand-navy to-transparent z-10"></div>
+        <div class="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-brand-navy to-transparent z-10"></div>
+        
+        <div class="text-center mb-10 reveal">
+            <h3 class="text-sm text-brand-blue uppercase tracking-[0.2em] font-bold">The Proof is in the Slips</h3>
+            <p class="text-gray-400 mt-2">Recent wins from the community.</p>
+        </div>
+
+        <div class="relative flex overflow-x-hidden group">
+            <div class="py-4 animate-marquee whitespace-nowrap flex items-center gap-6 group-hover:[animation-play-state:paused]">
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+1" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+2" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+3" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+4" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+5" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+            </div>
+            <div class="absolute top-0 py-4 animate-marquee2 whitespace-nowrap flex items-center gap-6 group-hover:[animation-play-state:paused]">
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+1" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+2" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+3" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+4" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
+                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+5" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-brand-cream">A System Built on <span class="text-brand-blue">Logic, Not Luck.</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">We don't chase losses. We don't sell get-rich-quick fantasies. We focus on rigorous research and mathematical edge.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-blue transition duration-500 shadow-lg group reveal">
+                    <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-blue group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-brand-navy transition duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-cream">Data-Driven Parlays</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Carefully constructed, premium big-line parlays. Vetted for maximum edge so every dollar you risk has true mathematical value.</p>
+                </div>
+                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-blue transition duration-500 shadow-lg group reveal delay-100">
+                    <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-blue group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-brand-navy transition duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-cream">Strategic Straights</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">The bedrock of consistent bankroll growth. Daily, deeply researched straight bets to ensure you grind out profit over the long haul.</p>
+                </div>
+                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-blue transition duration-500 shadow-lg group reveal delay-200">
+                    <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-blue group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-brand-navy transition duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-brand-cream">Bankroll Protection</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Strict unit management guidelines. We teach you exactly how to size your bets to survive variance and scale your capital safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lifestyle" class="py-24 relative bg-brand-surface/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 h-[500px] reveal">
+                    <div class="rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl">
+                        <img src="https://placehold.co/600x800/1E2954/60A5FA?text=Live+Sports+Vibe" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Live Sports Lifestyle">
+                        <div class="absolute bottom-6 left-6 z-10">
+                            <span class="bg-brand-blue/20 backdrop-blur-md text-brand-cream border border-brand-blue/30 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">The Experience</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="h-1/2 rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl">
+                            <img src="https://placehold.co/600x400/131A3A/F5B93D?text=Winning+Celebration" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Winning Celebration">
+                        </div>
+                        
+                        <div class="h-1/2 rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl flex items-center justify-center bg-brand-navy">
+                            <img src="https://placehold.co/600x400/0B1027/60A5FA?text=VIP+Discord+Chat" class="absolute inset-0 w-full h-full object-cover opacity-50 transition duration-700 group-hover:scale-105 mix-blend-screen" alt="VIP Community">
+                            <div class="relative z-10 text-center">
+                                <p class="text-3xl font-extrabold text-brand-amber mb-1">500+</p>
+                                <p class="text-xs text-brand-cream uppercase tracking-widest font-semibold">Active Members</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 reveal delay-200">
+                    <h3 class="text-sm text-brand-blue uppercase tracking-[0.2em] font-bold mb-3">Join the Inner Circle</h3>
+                    <h2 class="text-4xl md:text-5xl font-bold text-brand-cream mb-6 leading-tight">
+                        Winning is Better <br/> <span class="italic font-light text-gray-300">Together.</span>
+                    </h2>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        Betting shouldn't be a lonely grind. When you join Forever In Parlay, you're not just buying a slip of picks—you're tapping into an exclusive network of disciplined winners. 
+                    </p>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center text-brand-cream">
+                            <div class="w-8 h-8 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center mr-4 shrink-0 text-brand-amber">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <span class="font-medium">Direct access to top-tier analysts</span>
+                        </li>
+                        <li class="flex items-center text-brand-cream">
+                            <div class="w-8 h-8 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center mr-4 shrink-0 text-brand-amber">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <span class="font-medium">Live game watch-alongs & live betting</span>
+                        </li>
+                        <li class="flex items-center text-brand-cream">
+                            <div class="w-8 h-8 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center mr-4 shrink-0 text-brand-amber">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <span class="font-medium">Daily celebrations of community wins</span>
+                        </li>
+                    </ul>
+
+                    <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 bg-brand-surface border border-brand-blue/50 text-brand-blue font-bold rounded-lg transition duration-300 hover:bg-brand-blue hover:text-brand-navy hover:shadow-[0_0_20px_rgba(96,165,250,0.3)]">
+                        Become a Member
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-brand-navy relative overflow-hidden border-t border-brand-border">
+        <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0B1027/131A3A?text=+')] bg-cover bg-center opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center reveal">
+            <div class="flex justify-center mb-6">
+                <div class="flex -space-x-4">
+                    <img class="w-12 h-12 rounded-full border-2 border-brand-navy" src="https://placehold.co/100x100/131A3A/60A5FA?text=U1" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-brand-navy" src="https://placehold.co/100x100/131A3A/60A5FA?text=U2" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-brand-navy" src="https://placehold.co/100x100/131A3A/60A5FA?text=U3" alt="User">
+                    <div class="w-12 h-12 rounded-full border-2 border-brand-navy bg-brand-amber flex items-center justify-center text-brand-navy font-bold text-xs">+1K</div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center items-center gap-1 mb-6 text-brand-amber">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            
+            <h2 class="text-2xl md:text-3xl font-medium text-brand-cream leading-relaxed mb-4">
+                "I treated betting like a lottery ticket before joining. Now, I treat it like a portfolio. The transparency and discipline here are unmatched."
+            </h2>
+            <p class="text-brand-blue font-bold">— Verified Member <span class="text-gray-500 font-normal">via Whop (5.0 Rating)</span></p>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-32 bg-brand-surface/20 border-t border-brand-border relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand-blue/5 blur-[150px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-brand-cream">Select Your Membership</h2>
+                <p class="text-gray-400 text-lg">Instant access to the community, daily insights, and our premium strategy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
+                
+                <div class="glass rounded-3xl border border-brand-border p-10 flex flex-col relative transition duration-300 hover:border-gray-500 reveal delay-100">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-brand-cream mb-2">Day Pass</h3>
+                        <p class="text-gray-400 text-sm">Perfect for sampling the methodology.</p>
+                    </div>
+                    <div class="mb-8 border-b border-brand-border pb-8">
+                        <span class="text-5xl font-extrabold text-brand-cream">$100</span>
+                        <span class="text-gray-500 font-medium">/ 24 hrs</span>
+                    </div>
+                    <ul class="space-y-5 mb-10 flex-1">
+                        <li class="flex items-start text-gray-300">
+                            <svg class="w-6 h-6 text-brand-blue mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Top Pick of the Day</span>
+                        </li>
+                        <li class="flex items-start text-gray-300">
+                            <svg class="w-6 h-6 text-brand-blue mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Access to Daily Betting Slip</span>
+                        </li>
+                        <li class="flex items-start text-gray-300">
+                            <svg class="w-6 h-6 text-brand-blue mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Full 24-Hour Discord Access</span>
+                        </li>
+                    </ul>
+                    <a href="https://whop.com/fip-exclusive-day-pass" target="_blank" class="w-full block text-center py-4 rounded-xl bg-transparent border-2 border-brand-border hover:border-brand-cream text-brand-cream font-bold transition duration-300">
+                        Purchase Day Pass
+                    </a>
+                </div>
+
+                <div class="glass rounded-3xl border-2 border-brand-amber glow-amber p-10 flex flex-col relative transform md:-translate-y-6 shadow-2xl reveal delay-200 bg-brand-surface/90">
+                    <div class="absolute -top-4 inset-x-0 flex justify-center">
+                        <span class="bg-brand-amber text-brand-navy text-xs font-extrabold px-4 py-2 uppercase tracking-widest rounded-full shadow-lg flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            Most Popular &bull; 50% Savings
+                        </span>
+                    </div>
+                    
+                    <div class="mb-8 mt-2">
+                        <h3 class="text-2xl font-bold text-brand-cream mb-2">Monthly Pass</h3>
+                        <p class="text-brand-blue text-sm font-medium">The "Bankroll Builder" Protocol.</p>
+                    </div>
+                    <div class="mb-8 flex items-baseline gap-3 border-b border-brand-border pb-8">
+                        <span class="text-5xl font-extrabold text-brand-amber">$49.99</span>
+                        <span class="text-gray-400 font-medium">/ mo</span>
+                        <span class="line-through text-gray-600 text-sm ml-2">$100.00</span>
+                    </div>
+                    <ul class="space-y-5 mb-10 flex-1">
+                        <li class="flex items-start text-gray-200">
+                            <svg class="w-6 h-6 text-brand-amber mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Unrestricted Discord Access</span>
+                        </li>
+                        <li class="flex items-start text-gray-200">
+                            <svg class="w-6 h-6 text-brand-amber mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Premium Vetted Big-Line Parlays</span>
+                        </li>
+                        <li class="flex items-start text-gray-200">
+                            <svg class="w-6 h-6 text-brand-amber mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Daily Strategic Straight Bets</span>
+                        </li>
+                        <li class="flex items-start text-gray-200">
+                            <svg class="w-6 h-6 text-brand-amber mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Comprehensive Bankroll Management Guides</span>
+                        </li>
+                    </ul>
+                    <a href="https://whop.com/foreverinparlay/exclusive-monthly-pass-bankroll-builder/" target="_blank" class="w-full block text-center py-4 rounded-xl bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-bold transition duration-300 glow-amber-strong hover:scale-[1.02]">
+                        Join The Bankroll Builder
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-navy py-12 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            
+            <div class="flex items-center">
+                <div class="h-8 w-24 bg-brand-surface border border-brand-border rounded flex items-center justify-center text-[10px] font-bold text-brand-blue tracking-widest uppercase">
+                    [ LOGO ]
+                </div>
+            </div>
+            
+            <p class="text-gray-500 text-xs text-center md:text-left max-w-2xl leading-relaxed">
+                <span class="font-bold text-gray-400">Disclaimer:</span> Forever In Parlay provides sports betting information and analysis for entertainment and educational purposes only. Past performance is not indicative of future results. Please practice responsible bankroll management and only bet what you can afford to lose. If you or someone you know has a gambling problem, please seek help.
+            </p>
+
+            <div class="text-gray-500 text-sm font-medium whitespace-nowrap">
+                &copy; 2026 Forever In Parlay.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Stop observing once revealed
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1, // Trigger when 10% of element is visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+
+</body>
+</html>

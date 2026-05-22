@@ -860,6 +860,78 @@ animation: {
                     if (isMenuOpen) toggleMenu();
                 });
             });
+
+                    // ═══════════════════════════════════════════════════════════
+            // SOCIAL PROOF TOASTS (FOMO GENERATOR)
+            // ═══════════════════════════════════════════════════════════
+            const toastContainer = document.getElementById('toast-container');
+            
+            // Add as many names as you want here
+            const buyerNames = ["Michael", "Alex", "David", "Chris", "James", "Sarah", "Marcus", "Tyler", "Brandon", "Jordan", "Kevin", "Justin"];
+            
+            // The actions they just took
+            const buyerActions = [
+                "just grabbed a Day Pass 🔥",
+                "upgraded to Bankroll Builder 💰",
+                "joined the Inner Circle 🎯",
+                "secured a Monthly Pass 📈"
+            ];
+
+            function createToast() {
+                if (!toastContainer) return;
+
+                const randomName = buyerNames[Math.floor(Math.random() * buyerNames.length)];
+                const randomAction = buyerActions[Math.floor(Math.random() * buyerActions.length)];
+
+                // Create the physical toast element
+                const toast = document.createElement('div');
+                
+                // Styling: Premium dark glass aesthetic
+                toast.className = 'glass bg-brand-navy/95 border-brand-border shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] rounded-xl p-4 flex items-center gap-4 transform translate-y-10 opacity-0 transition-all duration-500 ease-out max-w-[280px] sm:max-w-sm pointer-events-auto';
+
+                toast.innerHTML = `
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-green/10 flex items-center justify-center border border-brand-green/30">
+                        <span class="live-dot" style="margin: 0;"></span>
+                    </div>
+                    <div>
+                        <p class="text-brand-cream text-sm font-extrabold tracking-wide">${randomName}</p>
+                        <p class="text-brand-blue text-xs font-medium">${randomAction}</p>
+                    </div>
+                `;
+
+                // Add to page
+                toastContainer.appendChild(toast);
+
+                // Animate IN (slide up and fade in)
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-10', 'opacity-0');
+                    toast.classList.add('translate-y-0', 'opacity-100');
+                }, 100);
+
+                // Animate OUT and remove after 5 seconds
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-10', 'opacity-0');
+                    
+                    // Delete from DOM after fade out completes
+                    setTimeout(() => toast.remove(), 500);
+                }, 5000);
+            }
+
+            // Randomizer to make it feel human (between 12s and 28s)
+            function scheduleNextToast() {
+                const nextTime = Math.floor(Math.random() * (28000 - 12000 + 1)) + 12000;
+                setTimeout(() => {
+                    createToast();
+                    scheduleNextToast();
+                }, nextTime);
+            }
+
+            // Kick off the very first toast 4 seconds after page load to hook them instantly
+            setTimeout(() => {
+                createToast();
+                scheduleNextToast();
+            }, 4000);
     </script>
     
 

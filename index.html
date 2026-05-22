@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forever In Parlay | High-Yield Sports Betting</title>
+    <title>Forever In Parlay | Stop Gambling. Start Investing.</title>
+    <link rel="preload" fetchpriority="high" as="image" href="https://github.com/cpg-studio/forever-in-paralay/blob/main/RLG-12%20Large.jpeg?raw=true">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -16,28 +17,42 @@
                     },
                     colors: {
                         brand: {
-                            navy: '#0B1027',      
-                            surface: '#131A3A',   
-                            border: '#1E2954',    
-                            blue: '#60A5FA',      
-                            amber: '#F5B93D',     
+                            navy: '#0B1027',
+                            surface: '#131A3A',
+                            border: '#1E2954',
+                            blue: '#60A5FA',
+                            amber: '#F5B93D',
                             amberHover: '#E0A630',
-                            cream: '#FDFBF7'      
+                            cream: '#FDFBF7',
+                            green: '#34D399'
                         }
                     },
-                    animation: {
-                        'marquee': 'marquee 25s linear infinite',
-                        'marquee2': 'marquee2 25s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
+animation: {
+    'marquee': 'marquee 40s linear infinite',
+    'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+    'ticker': 'ticker 30s linear infinite',
+    'float': 'float 6s ease-in-out infinite',
+    // --- ADD THESE NEW ONES ---
+    'spin-ultra-slow': 'spin 90s linear infinite',
+    'watermark-fade': 'watermarkFade 2s ease-out forwards',
+    'pulse-scale': 'pulseScale 6s ease-in-out infinite',
+},
+ keyframes: {
                         marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         },
-                        marquee2: {
-                            '0%': { transform: 'translateX(100%)' },
-                            '100%': { transform: 'translateX(0%)' },
+                        ticker: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseScale: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
                         }
                     }
                 }
@@ -51,12 +66,11 @@
             overflow-x: hidden;
         }
         
-        /* Subtle glowing effects */
         .glow-amber { box-shadow: 0 0 25px rgba(245, 185, 61, 0.25); }
         .glow-amber-strong { box-shadow: 0 0 40px rgba(245, 185, 61, 0.4); }
         .glow-blue { box-shadow: 0 0 30px rgba(96, 165, 250, 0.15); }
+        .glow-green { box-shadow: 0 0 30px rgba(52, 211, 153, 0.25); }
         
-        /* Glassmorphism utilities */
         .glass {
             background: rgba(19, 26, 58, 0.6);
             backdrop-filter: blur(12px);
@@ -64,7 +78,6 @@
             border: 1px solid rgba(30, 41, 84, 0.8);
         }
 
-        /* Scroll Reveal Classes */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -75,7 +88,6 @@
             transform: translateY(0);
         }
 
-        /* Editorial Image Overlay for depth */
         .img-gradient::after {
             content: '';
             position: absolute;
@@ -83,239 +95,486 @@
             background: linear-gradient(to top, rgba(11, 16, 39, 0.8) 0%, transparent 60%);
             pointer-events: none;
         }
+
+        .track-container { perspective: 1500px; }
+        .card-3d {
+            transform: rotateY(-15deg);
+            box-shadow: -15px 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            /* --- NEW: Disable tap highlight and text selection --- */
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Live pulse dot */
+        .live-dot {
+            position: relative;
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #34D399;
+            border-radius: 50%;
+        }
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: #34D399;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: pulse 1.5s infinite;
+        }
+        /* Hide scrollbar for the swipeable track */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Sports ticker bar */
+        .ticker-bar {
+            background: linear-gradient(90deg, #0B1027 0%, #131A3A 50%, #0B1027 100%);
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-brand-cream selection:bg-brand-blue selection:text-brand-navy">
 
-    <nav class="fixed w-full z-50 glass border-b-0 border-brand-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="flex items-center justify-between h-20">
-                
-                <div class="w-1/3 hidden md:block"></div>
+    <!-- ═══════════════════════════════════════════════════════════
+         TICKER BAR — adds sports-channel hype energy at the top
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="ticker-bar border-b border-brand-border overflow-hidden relative z-[60]">
+        <div class="flex animate-ticker w-max py-2.5">
+            <div class="flex items-center gap-12 px-8 text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+                <span class="text-brand-green flex items-center gap-2"><span class="live-dot"></span> 7 PICKS LIVE TODAY</span>
+                <span class="text-brand-amber">🔥 14-DAY HOT STREAK</span>
+                <span class="text-brand-cream">+24.5 UNITS THIS MONTH</span>
+                <span class="text-brand-blue">500+ ACTIVE MEMBERS</span>
+                <span class="text-brand-green flex items-center gap-2"><span class="live-dot"></span> 7 PICKS LIVE TODAY</span>
+                <span class="text-brand-amber">🔥 14-DAY HOT STREAK</span>
+                <span class="text-brand-cream">+24.5 UNITS THIS MONTH</span>
+                <span class="text-brand-blue">500+ ACTIVE MEMBERS</span>
+                <span class="text-brand-green flex items-center gap-2"><span class="live-dot"></span> 7 PICKS LIVE TODAY</span>
+                <span class="text-brand-amber">🔥 14-DAY HOT STREAK</span>
+                <span class="text-brand-cream">+24.5 UNITS THIS MONTH</span>
+                <span class="text-brand-blue">500+ ACTIVE MEMBERS</span>
+            </div>
+        </div>
+    </div>
 
-                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <!-- ═══════════════════════════════════════════════════════════
+         NAVIGATION
+         ═══════════════════════════════════════════════════════════ -->
+          <nav class="sticky top-0 w-full z-50 glass border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            
+            <div class="flex justify-between items-center py-4 min-h-[80px] md:min-h-[112px]">
+                
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                     <a href="#" class="flex items-center group">
-                        <div class="h-10 w-32 bg-brand-navy border border-brand-border rounded flex items-center justify-center text-xs font-bold text-brand-blue tracking-widest uppercase transition duration-300 group-hover:border-brand-blue glow-blue">
-                            [ LOGO ]
-                        </div>
+                        <img src="https://res.cloudinary.com/di5mtaspk/image/upload/v1779429896/LOGO_ojgcan.png" alt="Forever In Parlay" class="h-16 md:h-24 w-auto object-contain transition duration-300 group-hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]">
                     </a>
                 </div>
 
-                <div class="hidden md:flex w-1/3 justify-end items-center space-x-8">
-                    <a href="#philosophy" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Philosophy</a>
-                    <a href="#lifestyle" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Community</a>
-                    <a href="#pricing" class="px-5 py-2 rounded-full bg-brand-blue/10 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-brand-navy transition text-sm font-semibold">Join Now</a>
+                <div class="w-1/3"></div>
+
+                <div class="w-2/3 flex justify-end items-center relative z-20">
+                    
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#proof" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Proof</a>
+                        <a href="#philosophy" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">System</a>
+                        <a href="#lifestyle" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Community</a>
+                        <a href="#pricing" class="px-5 py-2 rounded-full bg-brand-amber text-brand-navy hover:bg-brand-amberHover transition text-sm font-bold whitespace-nowrap">Join Now</a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="md:hidden text-brand-cream hover:text-brand-amber transition focus:outline-none p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
                 
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-brand-navy border-b border-brand-border overflow-hidden transition-all duration-300 max-h-0 opacity-0 shadow-2xl">
+            <div class="px-4 py-8 flex flex-col space-y-6 text-center">
+                <a href="#proof" class="mobile-link text-lg font-medium text-brand-cream hover:text-brand-blue transition">Proof</a>
+                <a href="#philosophy" class="mobile-link text-lg font-medium text-brand-cream hover:text-brand-blue transition">System</a>
+                <a href="#lifestyle" class="mobile-link text-lg font-medium text-brand-cream hover:text-brand-blue transition">Community</a>
+                <a href="#pricing" class="mobile-link inline-block px-8 py-4 mt-4 rounded-xl bg-brand-amber text-brand-navy hover:bg-brand-amberHover transition text-lg font-extrabold uppercase tracking-widest glow-amber mx-auto w-full max-w-xs">Join Now</a>
             </div>
         </div>
     </nav>
-
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden">
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO — punched up: bigger display type, urgency, social proof
+         ═══════════════════════════════════════════════════════════ -->
+      <section class="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
         <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-blue/20 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-amber/10 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-blue/20 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none" style="animation-delay: 2s;"></div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-y-12 lg:gap-y-0 lg:gap-x-12 text-center lg:text-left">
             
-            <div class="w-full lg:w-1/2 text-center lg:text-left reveal active">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-blue text-xs font-semibold tracking-wide uppercase mb-6">
-                    <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
-                    </span>
-                    Now accepting new members
+            <div class="order-1 lg:row-start-1 lg:col-start-1 lg:self-end reveal active">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/10 border border-brand-green/40 text-brand-green text-xs font-bold tracking-widest uppercase mb-8">
+                    <span class="live-dot"></span>
+                    Live · Picks Dropping Now
                 </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-brand-cream leading-[1.1]">
-                    Stop Gambling. <br />
-                    Start <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-amber to-yellow-200">Investing.</span>
+
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight mb-2 text-brand-cream leading-[1.1]">
+                    Stop <br class="hidden md:block"/>
+                    <span class="text-hype">Gambling.</span>
                 </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-400 mb-10 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
-                    Join an elite community focused on long-term edge, premium big-line parlays, and mathematical bankroll growth. Leave the guessing to the amateurs.
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight mb-8 text-brand-cream leading-[0.9]">
+                    Start <span class="italic text-brand-amber">Winning.</span>
+                </h1>
+
+                <p class="mt-4 text-xl md:text-2xl text-gray-300 mb-2 lg:mb-10 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+                    Elite community. Premium big-line parlays. <span class="text-brand-amber font-semibold">+24.5 units this month.</span> Leave the guessing to the amateurs.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-bold rounded-lg transition transform hover:-translate-y-1 glow-amber flex items-center justify-center gap-2">
-                        Get Your Access Pass
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </div>
+
+            <div class="order-2 lg:row-span-2 lg:col-start-2 lg:row-start-1 lg:self-center reveal active delay-200 relative">
+                <div class="relative max-w-lg mx-auto h-[600px] lg:h-[640px] w-full">
+                    
+                                        <div class="absolute top-0 left-0 w-[68%] h-full rounded-2xl overflow-hidden border border-brand-border shadow-2xl glow-blue group">
+                        
+                        <video 
+                            src="https://res.cloudinary.com/di5mtaspk/video/upload/v1779377625/bday_35_hcrehb.mp4" 
+                            poster="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0888%20Large.jpeg?raw=true"
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline 
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                        ></video>
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent pointer-events-none z-10"></div>
+                        
+                        <div class="absolute top-4 left-4 glass px-3 py-1.5 rounded-md flex items-center gap-2 z-20">
+                            <span class="live-dot"></span>
+                            <span class="text-xs font-bold uppercase tracking-widest">At hardrock</span>
+                        </div>
+
+                        <div class="absolute bottom-5 left-5 right-5 z-20">
+                            <p class="text-[10px] text-gray-300 uppercase tracking-[0.2em] font-bold mb-1">The Founder · On Location</p>
+                            <p class="text-base font-extrabold text-brand-cream leading-tight">Where every winning Sunday starts.</p>
+                        </div>
+                    </div>
+
+                                       <div class="absolute top-1/2 -translate-y-1/2 right-0 w-[58%] aspect-square rounded-2xl overflow-hidden border-2 border-brand-amber shadow-2xl glow-amber group z-10 transition duration-500 hover:scale-[1.03] hover:-translate-y-1/2">
+                        <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/RLG-12%20Large.jpeg?raw=true" alt="Forever In Parlay founder" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent pointer-events-none"></div>
+                        
+                        <div class="absolute bottom-4 left-4 right-4 z-10">
+                            <div class="glass rounded-lg p-3 flex items-center gap-3">
+                                <div class="h-9 w-9 rounded-full bg-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-widest leading-none">This Month</p>
+                                    <p class="text-lg font-extrabold text-brand-cream leading-tight">+24.5 Units</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-brand-amber rounded-full glow-amber animate-pulse-slow hidden lg:block"></div>
+                </div>
+            </div>
+
+            <div class="order-3 lg:row-start-2 lg:col-start-1 lg:self-start reveal active delay-100">
+                
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-10">
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-5 bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-extrabold rounded-lg transition transform hover:-translate-y-1 glow-amber-strong flex items-center justify-center gap-2 text-lg uppercase tracking-wide">
+                        Get In The Group
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                    <a href="#proof" class="w-full sm:w-auto px-8 py-5 text-brand-cream font-semibold rounded-lg transition flex items-center justify-center gap-3 border border-brand-border hover:border-brand-blue group">
+                        <span class="w-8 h-8 rounded-full bg-brand-blue/20 flex items-center justify-center group-hover:bg-brand-blue group-hover:text-brand-navy transition">
+                            <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                        See The Receipts
                     </a>
                 </div>
-            </div>
 
-            <div class="w-full lg:w-1/2 reveal active delay-200 relative">
-                <div class="relative rounded-2xl overflow-hidden border border-brand-border glow-blue transform perspective-1000 rotate-y-[-5deg] hover:rotate-y-0 transition-transform duration-700">
-                    <img src="https://placehold.co/800x600/131A3A/60A5FA?text=Platform+Vibe+Image" alt="Platform Dashboard" class="w-full h-auto object-cover opacity-90">
-                    
-                    <div class="absolute bottom-6 left-6 glass px-4 py-3 rounded-lg flex items-center gap-3">
-                        <div class="h-10 w-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase tracking-wider">Average ROI</p>
-                            <p class="text-lg font-bold text-brand-cream">+24.5% Monthly</p>
-                        </div>
+                <div class="flex flex-wrap items-center gap-6 justify-center lg:justify-start pt-6 border-t border-brand-border">
+                    <div class="flex -space-x-2">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/headshots1%20Large.jpeg?raw=true" alt="">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/headshots2%20Large.jpeg?raw=true" alt="">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/headshots3%20Large.jpeg?raw=true" alt="">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/smiling-person-with-curly-hair-outdoors-2026-01-09-10-09-41-utc%20Large.jpeg?raw=true" alt="">
                     </div>
+                    <div class="flex items-center gap-1.5 text-brand-amber">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <span class="ml-1 text-brand-cream font-bold text-sm">5.0</span>
+                    </div>
+                    <p class="text-gray-400 text-sm"><span class="text-brand-cream font-bold">500+</span> winning bettors on Whop</p>
                 </div>
             </div>
 
         </div>
     </section>
-
-    <section id="results" class="py-16 bg-brand-surface/40 border-y border-brand-border overflow-hidden relative">
-        <div class="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-brand-navy to-transparent z-10"></div>
-        <div class="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-brand-navy to-transparent z-10"></div>
+    <!-- ═══════════════════════════════════════════════════════════
+         PROOF MARQUEE — moved up: hit them with receipts immediately
+         ═══════════════════════════════════════════════════════════ -->
+                <section id="proof" class="py-20 bg-brand-blue border-y border-brand-blue overflow-hidden relative shadow-[inset_0_0_40px_rgba(0,0,0,0.1)]">
         
-        <div class="text-center mb-10 reveal">
-            <h3 class="text-sm text-brand-blue uppercase tracking-[0.2em] font-bold">The Proof is in the Slips</h3>
-            <p class="text-gray-400 mt-2">Recent wins from the community.</p>
+        <div class="text-center mb-4 reveal relative z-30 px-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-navy text-brand-cream border border-brand-navy/50 text-xs font-bold tracking-widest uppercase mb-4 shadow-md">
+                Verified Wins
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-brand-cream mb-3 tracking-tight">
+                The Receipts <span class="text-white drop-shadow-sm">Speak.</span>
+            </h2>
+            <p class="text-brand-navy/90 text-lg max-w-2xl mx-auto font-bold tracking-wide">Swipe to browse. Click to verify. These are the last 14 days.</p>
         </div>
 
-        <div class="relative flex overflow-x-hidden group">
-            <div class="py-4 animate-marquee whitespace-nowrap flex items-center gap-6 group-hover:[animation-play-state:paused]">
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+1" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+2" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+3" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+4" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+5" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-            </div>
-            <div class="absolute top-0 py-4 animate-marquee2 whitespace-nowrap flex items-center gap-6 group-hover:[animation-play-state:paused]">
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+1" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+2" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+3" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+4" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-                <div class="inline-block w-72 h-40 rounded-xl overflow-hidden border border-brand-border relative">
-                    <img src="https://placehold.co/400x300/0B1027/F5B93D?text=Winning+Slip+5" class="w-full h-full object-cover opacity-80" alt="Bet Slip">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="philosophy" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-brand-cream">A System Built on <span class="text-brand-blue">Logic, Not Luck.</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">We don't chase losses. We don't sell get-rich-quick fantasies. We focus on rigorous research and mathematical edge.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-blue transition duration-500 shadow-lg group reveal">
-                    <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-blue group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-brand-navy transition duration-300">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-brand-cream">Data-Driven Parlays</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Carefully constructed, premium big-line parlays. Vetted for maximum edge so every dollar you risk has true mathematical value.</p>
-                </div>
-                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-blue transition duration-500 shadow-lg group reveal delay-100">
-                    <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-blue group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-brand-navy transition duration-300">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-brand-cream">Strategic Straights</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">The bedrock of consistent bankroll growth. Daily, deeply researched straight bets to ensure you grind out profit over the long haul.</p>
-                </div>
-                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-blue transition duration-500 shadow-lg group reveal delay-200">
-                    <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-blue group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-brand-navy transition duration-300">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-brand-cream">Bankroll Protection</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Strict unit management guidelines. We teach you exactly how to size your bets to survive variance and scale your capital safely.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="lifestyle" class="py-24 relative bg-brand-surface/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
+        <div class="track-container w-full relative">
+            <div id="receipt-slider" class="flex overflow-x-auto overflow-y-hidden touch-pan-x hide-scrollbar w-full gap-4 md:gap-8 px-4 md:px-8 py-16 items-center cursor-grab active:cursor-grabbing">
                 
-                <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 h-[500px] reveal">
-                    <div class="rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl">
-                        <img src="https://placehold.co/600x800/1E2954/60A5FA?text=Live+Sports+Vibe" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Live Sports Lifestyle">
-                        <div class="absolute bottom-6 left-6 z-10">
-                            <span class="bg-brand-blue/20 backdrop-blur-md text-brand-cream border border-brand-blue/30 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">The Experience</span>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1387.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1388.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_3971.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1555.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1726.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1727.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1881.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1885.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
+                </div>
+
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1387.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1388.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_3971.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1555.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1726.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1727.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1881.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+                <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" aria-hidden="true" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-white/10 transition duration-300"></div>
+                    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1885.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 reveal pointer-events-none">
+            <div class="text-center">
+                <p class="text-5xl md:text-6xl font-extrabold text-brand-amber drop-shadow-md">68%</p>
+                <p class="text-xs text-brand-navy uppercase tracking-widest mt-1 font-bold">Hit Rate</p>
+            </div>
+            <div class="text-center">
+                <p class="text-5xl md:text-6xl font-extrabold text-brand-cream drop-shadow-md">+24.5</p>
+                <p class="text-xs text-brand-navy uppercase tracking-widest mt-1 font-bold">Units / Month</p>
+            </div>
+            <div class="text-center">
+                <p class="text-5xl md:text-6xl font-extrabold text-white drop-shadow-md">500+</p>
+                <p class="text-xs text-brand-navy uppercase tracking-widest mt-1 font-bold">Active Bettors</p>
+            </div>
+            <div class="text-center">
+                <p class="text-5xl md:text-6xl font-extrabold text-brand-amber drop-shadow-md">5.0★</p>
+                <p class="text-xs text-brand-navy uppercase tracking-widest mt-1 font-bold">Whop Rating</p>
+            </div>
+        </div>
+    </section>
+     <!-- ═══════════════════════════════════════════════════════════
+         PHILOSOPHY / SYSTEM — now they're hyped, explain the why
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="philosophy" class="py-24 relative border-t border-brand-border">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none flex justify-center items-center z-0">
+    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" 
+         alt="" 
+         class="w-[800px] md:w-[1200px] h-auto opacity-[0.03] animate-pulse-scale mix-blend-screen">
+</div>        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-brand-blue text-xs font-bold tracking-widest uppercase mb-4">
+                    The System
+                </div>
+               <h2 class="text-4xl md:text-5xl font-extrabold text-brand-cream mb-4 tracking-tight leading-[1.1] md:leading-[1.1]">
+    Built on <span class="italic text-brand-blue">Logic.</span> <br/>
+    Fueled by <span class="italic text-brand-amber">Edge.</span>
+</h2>                <p class="text-gray-400 max-w-2xl mx-auto text-lg">We don't chase losses. We don't sell fantasies. We grind out a measurable, mathematical edge — every single day.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-amber transition duration-500 shadow-lg group reveal relative overflow-hidden">
+                    <span class="absolute -top-2 -right-2 text-[140px] font-black text-brand-border opacity-40 leading-none">01</span>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-amber group-hover:scale-110 group-hover:bg-brand-amber group-hover:text-brand-navy transition duration-300">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brand-cream tracking-wide">Data-Driven Parlays</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Carefully constructed, premium big-line parlays. Vetted for maximum edge so every dollar you risk has true mathematical value.</p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-amber transition duration-500 shadow-lg group reveal delay-100 relative overflow-hidden">
+                    <span class="absolute -top-2 -right-2 text-[140px] font-black text-brand-border opacity-40 leading-none">02</span>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-amber group-hover:scale-110 group-hover:bg-brand-amber group-hover:text-brand-navy transition duration-300">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brand-cream tracking-wide">Strategic Straights</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">The bedrock of consistent bankroll growth. Daily, deeply researched straight bets to ensure you grind out profit over the long haul.</p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-2xl border border-brand-border hover:border-brand-amber transition duration-500 shadow-lg group reveal delay-200 relative overflow-hidden">
+                    <span class="absolute -top-2 -right-2 text-[140px] font-black text-brand-border opacity-40 leading-none">03</span>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-brand-navy border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-amber group-hover:scale-110 group-hover:bg-brand-amber group-hover:text-brand-navy transition duration-300">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brand-cream tracking-wide">Bankroll Protection</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Strict unit management guidelines. We teach you exactly how to size your bets to survive variance and scale your capital safely.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         LIFESTYLE / COMMUNITY
+         ═══════════════════════════════════════════════════════════ -->
+             <section id="lifestyle" class="py-24 relative bg-brand-blue border-t border-brand-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="block lg:hidden w-full reveal mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-navy text-white text-xs font-bold tracking-widest uppercase mb-4 shadow-md">
+                    The Inner Circle
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tight">                        
+                    <span class="text-brand-cream">WINNING IS BETTER</span> <br/> 
+                    <span class="italic text-brand-amber drop-shadow-md">Together.</span>
+                </h2>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                
+                <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 h-[400px] sm:h-[500px] reveal">
+                    <div class="rounded-3xl overflow-hidden relative group img-gradient border-2 border-brand-navy/20 shadow-2xl">
+                        <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0899%20Large.jpeg?raw=true" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Live Sports Lifestyle">
+                        <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10">
+                            <span class="bg-brand-navy/95 backdrop-blur-md text-white border border-brand-navy px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-lg">The Experience</span>
                         </div>
                     </div>
                     
                     <div class="flex flex-col gap-4 h-full">
-                        <div class="h-1/2 rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl">
-                            <img src="https://placehold.co/600x400/131A3A/F5B93D?text=Winning+Celebration" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Winning Celebration">
+                        <div class="h-1/2 rounded-3xl overflow-hidden relative group img-gradient border-2 border-brand-navy/20 shadow-2xl">
+                            <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/GettyImages-1716163790.jpg?raw=true" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Winning Celebration">
                         </div>
                         
-                        <div class="h-1/2 rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl flex items-center justify-center bg-brand-navy">
-                            <img src="https://placehold.co/600x400/0B1027/60A5FA?text=VIP+Discord+Chat" class="absolute inset-0 w-full h-full object-cover opacity-50 transition duration-700 group-hover:scale-105 mix-blend-screen" alt="VIP Community">
+                        <div class="h-1/2 rounded-3xl overflow-hidden relative group border-2 border-brand-navy/20 shadow-2xl flex items-center justify-center bg-brand-navy">
+                            <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/6968eee4ece453ea298fd305_63e6b894d50569f45aa78b38_types-of-online-communities.jpeg?raw=true" class="absolute inset-0 w-full h-full object-cover opacity-50 transition duration-700 group-hover:scale-105 mix-blend-screen" alt="VIP Community">
                             <div class="relative z-10 text-center">
-                                <p class="text-3xl font-extrabold text-brand-amber mb-1">500+</p>
-                                <p class="text-xs text-brand-cream uppercase tracking-widest font-semibold">Active Members</p>
+                                <p class="text-3xl sm:text-4xl font-extrabold text-brand-amber mb-0 sm:mb-1 drop-shadow-md">500+</p>
+                                <p class="text-[10px] sm:text-xs text-white uppercase tracking-widest font-bold">Active Members</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2 reveal delay-200">
-                    <h3 class="text-sm text-brand-blue uppercase tracking-[0.2em] font-bold mb-3">Join the Inner Circle</h3>
-                    <h2 class="text-4xl md:text-5xl font-bold text-brand-cream mb-6 leading-tight">
-                        Winning is Better <br/> <span class="italic font-light text-gray-300">Together.</span>
-                    </h2>
-                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
-                        Betting shouldn't be a lonely grind. When you join Forever In Parlay, you're not just buying a slip of picks—you're tapping into an exclusive network of disciplined winners. 
+                <div class="w-full lg:w-1/2 reveal delay-200 mt-2 lg:mt-0">
+                    
+                    <div class="hidden lg:block">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-navy text-white text-xs font-bold tracking-widest uppercase mb-4 shadow-md">
+                            The Inner Circle
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1] tracking-tight">                        
+                            <span class="text-brand-cream">WINNING IS BETTER</span> <br/> 
+                            <span class="italic text-brand-amber drop-shadow-md">Together.</span>
+                        </h2>
+                    </div>
+                    
+                    <p class="text-lg text-brand-navy/90 mb-8 leading-relaxed font-semibold">
+                        Betting shouldn't be a lonely grind. When you join Forever In Parlay, you're not just buying picks — you're tapping into a war room of disciplined winners hitting alerts 24/7.
                     </p>
                     
                     <ul class="space-y-4 mb-10">
-                        <li class="flex items-center text-brand-cream">
-                            <div class="w-8 h-8 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center mr-4 shrink-0 text-brand-amber">
+                        <li class="flex items-center text-brand-navy">
+                            <div class="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center mr-4 shrink-0 text-brand-amber shadow-md border-2 border-brand-navy">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="font-medium">Direct access to top-tier analysts</span>
+                            <span class="font-extrabold text-[15px]">Direct access to top-tier analysts</span>
                         </li>
-                        <li class="flex items-center text-brand-cream">
-                            <div class="w-8 h-8 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center mr-4 shrink-0 text-brand-amber">
+                        <li class="flex items-center text-brand-navy">
+                            <div class="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center mr-4 shrink-0 text-brand-amber shadow-md border-2 border-brand-navy">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="font-medium">Live game watch-alongs & live betting</span>
+                            <span class="font-extrabold text-[15px]">Live game watch-alongs & in-game betting</span>
                         </li>
-                        <li class="flex items-center text-brand-cream">
-                            <div class="w-8 h-8 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center mr-4 shrink-0 text-brand-amber">
+                        <li class="flex items-center text-brand-navy">
+                            <div class="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center mr-4 shrink-0 text-brand-amber shadow-md border-2 border-brand-navy">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="font-medium">Daily celebrations of community wins</span>
+                            <span class="font-extrabold text-[15px]">Daily community win celebrations</span>
                         </li>
                     </ul>
 
-                    <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 bg-brand-surface border border-brand-blue/50 text-brand-blue font-bold rounded-lg transition duration-300 hover:bg-brand-blue hover:text-brand-navy hover:shadow-[0_0_20px_rgba(96,165,250,0.3)]">
+                    <a href="#pricing" class="inline-flex w-full sm:w-auto items-center justify-center px-8 py-4 bg-brand-navy text-brand-amber font-extrabold rounded-lg transition duration-300 hover:bg-brand-amber hover:text-brand-navy hover:shadow-[0_0_20px_rgba(245,185,61,0.4)] shadow-xl uppercase tracking-widest text-center">
                         Become a Member
                     </a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="py-20 bg-brand-navy relative overflow-hidden border-t border-brand-border">
-        <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0B1027/131A3A?text=+')] bg-cover bg-center opacity-10"></div>
-        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center reveal">
-            <div class="flex justify-center mb-6">
-                <div class="flex -space-x-4">
-                    <img class="w-12 h-12 rounded-full border-2 border-brand-navy" src="https://placehold.co/100x100/131A3A/60A5FA?text=U1" alt="User">
-                    <img class="w-12 h-12 rounded-full border-2 border-brand-navy" src="https://placehold.co/100x100/131A3A/60A5FA?text=U2" alt="User">
-                    <img class="w-12 h-12 rounded-full border-2 border-brand-navy" src="https://placehold.co/100x100/131A3A/60A5FA?text=U3" alt="User">
-                    <div class="w-12 h-12 rounded-full border-2 border-brand-navy bg-brand-amber flex items-center justify-center text-brand-navy font-bold text-xs">+1K</div>
-                </div>
+    </section>    
+        <!-- ═══════════════════════════════════════════════════════════
+         TESTIMONIAL
+         ═══════════════════════════════════════════════════════════ -->
+  <section class="py-24 bg-brand-navy relative overflow-hidden border-t border-brand-border">
+    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0B1027/131A3A?text=+')] bg-cover bg-center opacity-10"></div>
+    <div class="max-w-4xl mx-auto px-4 relative z-10 text-center reveal">
+        <div class="flex justify-center mb-6">
+            <div class="flex -space-x-4">
+                <img class="w-12 h-12 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/smiling-person-with-curly-hair-outdoors-2026-01-09-10-09-41-utc%20Large.jpeg?raw=true" alt="">
+                <img class="w-12 h-12 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/headshots1%20Large.jpeg?raw=true" alt="">
+                <img class="w-12 h-12 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/headshots3%20Large.jpeg?raw=true" alt="">
+                <div class="w-12 h-12 rounded-full border-2 border-brand-navy bg-brand-amber flex items-center justify-center text-brand-navy font-bold text-xs">+1K</div>
             </div>
-            
+        </div>            
             <div class="flex justify-center items-center gap-1 mb-6 text-brand-amber">
                 <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                 <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -324,28 +583,39 @@
                 <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
             
-            <h2 class="text-2xl md:text-3xl font-medium text-brand-cream leading-relaxed mb-4">
-                "I treated betting like a lottery ticket before joining. Now, I treat it like a portfolio. The transparency and discipline here are unmatched."
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-cream leading-tight mb-6 tracking-wide">
+                "I treated betting like a lottery ticket before joining. Now I treat it like a <span class="text-brand-amber italic">portfolio.</span>"
             </h2>
-            <p class="text-brand-blue font-bold">— Verified Member <span class="text-gray-500 font-normal">via Whop (5.0 Rating)</span></p>
+            <p class="text-brand-blue font-bold text-sm tracking-widest uppercase">— Verified Member <span class="text-gray-500 font-normal">via Whop · 5.0 Rating</span></p>
         </div>
     </section>
 
-    <section id="pricing" class="py-32 bg-brand-surface/20 border-t border-brand-border relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand-blue/5 blur-[150px] rounded-full pointer-events-none"></div>
+    <!-- ═══════════════════════════════════════════════════════════
+         PRICING
+         ═══════════════════════════════════════════════════════════ -->
+        <section id="pricing" class="py-32 bg-brand-surface/20 border-t border-brand-border relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand-amber/10 blur-[150px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-brand-cream">Select Your Membership</h2>
-                <p class="text-gray-400 text-lg">Instant access to the community, daily insights, and our premium strategy.</p>
+                
+                <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" alt="Forever In Parlay Logo" class="h-auto md:h-24 w-40 mx-auto object-contain mb-8 drop-shadow-[0_0_15px_rgba(96,165,250,0.15)]">
+
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest uppercase mb-4">
+                    Get In
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-brand-cream mb-4 tracking-tight leading-[0.9]">
+                    PICK YOUR <span class="text-brand-amber italic">SEAT.</span>
+                </h2>
+                <p class="text-gray-400 text-lg">Instant Discord access. Daily picks. The whole playbook.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
                 
                 <div class="glass rounded-3xl border border-brand-border p-10 flex flex-col relative transition duration-300 hover:border-gray-500 reveal delay-100">
                     <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-brand-cream mb-2">Day Pass</h3>
-                        <p class="text-gray-400 text-sm">Perfect for sampling the methodology.</p>
+                        <h3 class="text-2xl font-bold text-brand-cream mb-2 tracking-wide">Day Pass</h3>
+                        <p class="text-gray-400 text-sm">Test-drive the methodology.</p>
                     </div>
                     <div class="mb-8 border-b border-brand-border pb-8">
                         <span class="text-5xl font-extrabold text-brand-cream">$100</span>
@@ -365,8 +635,8 @@
                             <span>Full 24-Hour Discord Access</span>
                         </li>
                     </ul>
-                    <a href="https://whop.com/fip-exclusive-day-pass" target="_blank" class="w-full block text-center py-4 rounded-xl bg-transparent border-2 border-brand-border hover:border-brand-cream text-brand-cream font-bold transition duration-300">
-                        Purchase Day Pass
+                    <a href="https://whop.com/fip-exclusive-day-pass" target="_blank" class="w-full block text-center py-4 rounded-xl bg-transparent border-2 border-brand-border hover:border-brand-cream text-brand-cream font-bold transition duration-300 uppercase tracking-widest text-sm">
+                        Get The Day Pass
                     </a>
                 </div>
 
@@ -374,18 +644,18 @@
                     <div class="absolute -top-4 inset-x-0 flex justify-center">
                         <span class="bg-brand-amber text-brand-navy text-xs font-extrabold px-4 py-2 uppercase tracking-widest rounded-full shadow-lg flex items-center gap-1">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            Most Popular &bull; 50% Savings
+                            Most Popular &bull; 50% Off
                         </span>
                     </div>
                     
                     <div class="mb-8 mt-2">
-                        <h3 class="text-2xl font-bold text-brand-cream mb-2">Monthly Pass</h3>
+                        <h3 class="text-2xl font-bold text-brand-cream mb-2 tracking-wide">Monthly Pass</h3>
                         <p class="text-brand-blue text-sm font-medium">The "Bankroll Builder" Protocol.</p>
                     </div>
                     <div class="mb-8 flex items-baseline gap-3 border-b border-brand-border pb-8">
                         <span class="text-5xl font-extrabold text-brand-amber">$49.99</span>
                         <span class="text-gray-400 font-medium">/ mo</span>
-                        <span class="line-through text-gray-600 text-sm ml-2">$100.00</span>
+                        <span class="line-through text-gray-600 text-sm ml-2">$100</span>
                     </div>
                     <ul class="space-y-5 mb-10 flex-1">
                         <li class="flex items-start text-gray-200">
@@ -402,25 +672,33 @@
                         </li>
                         <li class="flex items-start text-gray-200">
                             <svg class="w-6 h-6 text-brand-amber mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span>Comprehensive Bankroll Management Guides</span>
+                            <span>Bankroll Management Playbook</span>
                         </li>
                     </ul>
-                    <a href="https://whop.com/foreverinparlay/exclusive-monthly-pass-bankroll-builder/" target="_blank" class="w-full block text-center py-4 rounded-xl bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-bold transition duration-300 glow-amber-strong hover:scale-[1.02]">
-                        Join The Bankroll Builder
+                    <a href="https://whop.com/foreverinparlay/exclusive-monthly-pass-bankroll-builder/" target="_blank" class="w-full block text-center py-4 rounded-xl bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-extrabold transition duration-300 glow-amber-strong hover:scale-[1.02] uppercase tracking-widest text-sm">
+                        Join Bankroll Builder
                     </a>
                 </div>
 
             </div>
         </div>
     </section>
-
+    <!-- ═══════════════════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════════════════ -->
+         
+             <div id="lightbox" class="fixed inset-0 z-[100] bg-brand-navy/95 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-brand-cream hover:text-brand-amber transition z-50 p-2">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <img id="lightbox-img" src="" class="max-h-[85vh] max-w-full rounded-2xl shadow-2xl border border-brand-border transform scale-95 transition-transform duration-300">
+    </div>
+    
     <footer class="bg-brand-navy py-12 border-t border-brand-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
             
             <div class="flex items-center">
-                <div class="h-8 w-24 bg-brand-surface border border-brand-border rounded flex items-center justify-center text-[10px] font-bold text-brand-blue tracking-widest uppercase">
-                    [ LOGO ]
-                </div>
+                <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" alt="Forever In Parlay Logo" class="h-24 w-auto object-contain">
             </div>
             
             <p class="text-gray-500 text-xs text-center md:text-left max-w-2xl leading-relaxed">
@@ -435,26 +713,155 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Scroll Reveal
             const reveals = document.querySelectorAll(".reveal");
-
             const revealOnScroll = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
-                        observer.unobserve(entry.target); // Stop observing once revealed
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, {
                 root: null,
-                threshold: 0.1, // Trigger when 10% of element is visible
+                threshold: 0.1, 
                 rootMargin: "0px 0px -50px 0px"
             });
-
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
-            });
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
         });
+        
+                    // ═══════════════════════════════════════════════════════════
+            // SWIPEABLE MARQUEE & LIGHTBOX LOGIC (Perfect Infinite Loop)
+            // ═══════════════════════════════════════════════════════════
+            const slider = document.getElementById('receipt-slider');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            let isDown = false;
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+            let isAutoScrolling = true;
+
+            // 1. Smooth Infinite Auto-Scroll
+            function autoScroll() {
+                if (isAutoScrolling && slider && !isDown) {
+                    slider.scrollLeft += 1; // Speed of scroll
+                    
+                    // The magic trick: Because the cards are duplicated exactly, 
+                    // when we scroll exactly 50% of the way, we reset to 0 seamlessly.
+                    if (slider.scrollLeft >= (slider.scrollWidth / 2)) {
+                        slider.scrollLeft = 0; 
+                    }
+                }
+                requestAnimationFrame(autoScroll);
+            }
+            requestAnimationFrame(autoScroll); // Kick off the animation
+
+            // 2. Mouse Drag Events (Desktop)
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false; 
+                isAutoScrolling = false; // Pause on click
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                isAutoScrolling = true; // Resume if they drag out
+            });
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                isAutoScrolling = true; // Resume on release
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                isDragging = true; // Flag that user is dragging, not clicking
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 1.5; // Drag speed multiplier
+                slider.scrollLeft = scrollLeft - walk;
+            });
+
+            // 3. Hover Pause (Like the original CSS marquee)
+            slider.addEventListener('mouseenter', () => {
+                if (!isDown) isAutoScrolling = false;
+            });
+
+            // 4. Touch Events (Mobile Swiping)
+            slider.addEventListener('touchstart', () => {
+                isAutoScrolling = false;
+                isDragging = false;
+            });
+            slider.addEventListener('touchmove', () => {
+                isDragging = true; // Flag that user is swiping
+            });
+            slider.addEventListener('touchend', () => {
+                isAutoScrolling = true;
+            });
+
+            // 5. Lightbox Functions
+            window.openLightbox = function(imgSrc) {
+                // If they were just swiping/dragging, ignore the click
+                if (isDragging) return; 
+                
+                lightboxImg.src = imgSrc;
+                lightbox.classList.remove('opacity-0', 'pointer-events-none');
+                setTimeout(() => lightboxImg.classList.remove('scale-95'), 10);
+                isAutoScrolling = false; // Pause background slider while reading
+            };
+
+            window.closeLightbox = function() {
+                lightbox.classList.add('opacity-0', 'pointer-events-none');
+                lightboxImg.classList.add('scale-95');
+                setTimeout(() => lightboxImg.src = '', 300);
+                isAutoScrolling = true; // Resume background slider
+            };
+
+            // Close lightbox if clicking the dark background
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            
+                        // ═══════════════════════════════════════════════════════════
+            // MOBILE NAVIGATION MENU
+            // ═══════════════════════════════════════════════════════════
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon-path');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    // Open menu
+                    mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                    mobileMenu.classList.add('max-h-[400px]', 'opacity-100');
+                    // Morph icon to X
+                    menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+                } else {
+                    // Close menu
+                    mobileMenu.classList.remove('max-h-[400px]', 'opacity-100');
+                    mobileMenu.classList.add('max-h-0', 'opacity-0');
+                    // Morph icon back to Hamburger
+                    menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                }
+            }
+
+            if(menuBtn) {
+                menuBtn.addEventListener('click', toggleMenu);
+            }
+
+            // Automatically close the mobile menu when a link is clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMenuOpen) toggleMenu();
+                });
+            });
     </script>
+    
 
 </body>
 </html>

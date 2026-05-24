@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forever In Parlay | Stop Gambling. Start Winning.</title>
-    <!-- Social share preview -->
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:url" content="https://foreverinparlay.com">
 <meta property="og:title" content="Forever In Parlay | Stop Gambling. Start Winning.">
 <meta property="og:description" content="Elite sports betting community. Premium big-line parlays, daily picks, and disciplined bankroll growth.">
@@ -46,7 +45,6 @@ animation: {
     'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
     'ticker': 'ticker 30s linear infinite',
     'float': 'float 6s ease-in-out infinite',
-    // --- ADD THESE NEW ONES ---
     'spin-ultra-slow': 'spin 90s linear infinite',
     'watermark-fade': 'watermarkFade 2s ease-out forwards',
     'pulse-scale': 'pulseScale 6s ease-in-out infinite',
@@ -115,7 +113,6 @@ animation: {
             transform: rotateY(-15deg);
             box-shadow: -15px 10px 30px rgba(0, 0, 0, 0.5);
             transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            /* --- NEW: Disable tap highlight and text selection --- */
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             user-select: none;
@@ -139,21 +136,41 @@ animation: {
             opacity: 0.5;
             animation: pulse 1.5s infinite;
         }
-        /* Hide scrollbar for the swipeable track */
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Sports ticker bar */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         .ticker-bar {
             background: linear-gradient(90deg, #0B1027 0%, #131A3A 50%, #0B1027 100%);
+        }
+
+        /* --- WAR ROOM STYLES --- */
+        .redacted-block {
+            background: repeating-linear-gradient(45deg, #1E2954, #1E2954 10px, #131A3A 10px, #131A3A 20px);
+            color: #60A5FA;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-message {
+            animation: slideInUp 0.4s ease-out forwards;
         }
     </style>
 </head>
 <body class="font-sans antialiased text-brand-cream selection:bg-brand-blue selection:text-brand-navy">
 
-    <!-- ═══════════════════════════════════════════════════════════
-         TICKER BAR — adds sports-channel hype energy at the top
-         ═══════════════════════════════════════════════════════════ -->
     <div class="ticker-bar border-b border-brand-border overflow-hidden relative z-[60]">
         <div class="flex animate-ticker w-max py-2.5">
             <div class="flex items-center gap-12 px-8 text-xs font-bold uppercase tracking-widest whitespace-nowrap">
@@ -173,24 +190,16 @@ animation: {
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         NAVIGATION
-         ═══════════════════════════════════════════════════════════ -->
-          <nav class="sticky top-0 w-full z-50 glass border-b border-brand-border">
+    <nav class="sticky top-0 w-full z-50 glass border-b border-brand-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            
             <div class="flex justify-between items-center py-4 min-h-[80px] md:min-h-[112px]">
-                
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                     <a href="#" class="flex items-center group">
                         <img src="https://res.cloudinary.com/di5mtaspk/image/upload/v1779429896/LOGO_ojgcan.png" alt="Forever In Parlay" class="h-16 md:h-24 w-auto object-contain transition duration-300 group-hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]">
                     </a>
                 </div>
-
                 <div class="w-1/3"></div>
-
                 <div class="w-2/3 flex justify-end items-center relative z-20">
-                    
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="#proof" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Proof</a>
                         <a href="#philosophy" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">System</a>
@@ -198,14 +207,12 @@ animation: {
                         <a href="#lifestyle" class="hover:text-brand-blue transition text-sm font-medium text-gray-300">Community</a>
                         <a href="#pricing" class="px-5 py-2 rounded-full bg-brand-amber text-brand-navy hover:bg-brand-amberHover transition text-sm font-bold whitespace-nowrap">Join Now</a>
                     </div>
-
                     <button id="mobile-menu-btn" class="md:hidden text-brand-cream hover:text-brand-amber transition focus:outline-none p-2">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
-                
             </div>
         </div>
 
@@ -220,10 +227,7 @@ animation: {
         </div>
     </nav>
     
-    <!-- ═══════════════════════════════════════════════════════════
-         HERO — punched up: bigger display type, urgency, social proof
-         ═══════════════════════════════════════════════════════════ -->
-      <section class="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
+    <section class="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
         <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-blue/20 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-blue/20 blur-[150px] rounded-full mix-blend-screen animate-pulse-slow pointer-events-none" style="animation-delay: 2s;"></div>
         
@@ -250,36 +254,21 @@ animation: {
 
             <div class="order-2 lg:row-span-2 lg:col-start-2 lg:row-start-1 lg:self-center reveal active delay-200 relative">
                 <div class="relative max-w-lg mx-auto h-[600px] lg:h-[640px] w-full">
-                    
-                                        <div class="absolute top-0 left-0 w-[68%] h-full rounded-2xl overflow-hidden border border-brand-border shadow-2xl glow-blue group">
-                        
-                        <video 
-                            src="https://res.cloudinary.com/di5mtaspk/video/upload/v1779377625/bday_35_hcrehb.mp4" 
-                            poster="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0888%20Large.jpeg?raw=true"
-                            autoplay 
-                            loop 
-                            muted 
-                            playsinline 
-                            class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                        ></video>
-                        
+                    <div class="absolute top-0 left-0 w-[68%] h-full rounded-2xl overflow-hidden border border-brand-border shadow-2xl glow-blue group">
+                        <video src="https://res.cloudinary.com/di5mtaspk/video/upload/v1779377625/bday_35_hcrehb.mp4" poster="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0888%20Large.jpeg?raw=true" autoplay loop muted playsinline class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent pointer-events-none z-10"></div>
-                        
                         <div class="absolute top-4 left-4 glass px-3 py-1.5 rounded-md flex items-center gap-2 z-20">
                             <span class="live-dot"></span>
                             <span class="text-xs font-bold uppercase tracking-widest">At hardrock</span>
                         </div>
-
                         <div class="absolute bottom-5 left-5 right-5 z-20">
                             <p class="text-[10px] text-gray-300 uppercase tracking-[0.2em] font-bold mb-1">The Founder · On Location</p>
                             <p class="text-base font-extrabold text-brand-cream leading-tight">Where every winning Sunday starts.</p>
                         </div>
                     </div>
-
-                                       <div class="absolute top-1/2 -translate-y-1/2 right-0 w-[58%] aspect-square rounded-2xl overflow-hidden border-2 border-brand-amber shadow-2xl glow-amber group z-10 transition duration-500 hover:scale-[1.03] hover:-translate-y-1/2">
+                    <div class="absolute top-1/2 -translate-y-1/2 right-0 w-[58%] aspect-square rounded-2xl overflow-hidden border-2 border-brand-amber shadow-2xl glow-amber group z-10 transition duration-500 hover:scale-[1.03] hover:-translate-y-1/2">
                         <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/RLG-12%20Large.jpeg?raw=true" alt="Forever In Parlay founder" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent pointer-events-none"></div>
-                        
                         <div class="absolute bottom-4 left-4 right-4 z-10">
                             <div class="glass rounded-lg p-3 flex items-center gap-3">
                                 <div class="h-9 w-9 rounded-full bg-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
@@ -297,7 +286,6 @@ animation: {
             </div>
 
             <div class="order-3 lg:row-start-2 lg:col-start-1 lg:self-start reveal active delay-100">
-                
                 <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-10">
                     <a href="#pricing" class="w-full sm:w-auto px-8 py-5 bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-extrabold rounded-lg transition transform hover:-translate-y-1 glow-amber-strong flex items-center justify-center gap-2 text-lg uppercase tracking-wide">
                         Get In The Group
@@ -310,7 +298,6 @@ animation: {
                         See The Receipts
                     </a>
                 </div>
-
                 <div class="flex flex-wrap items-center gap-6 justify-center lg:justify-start pt-6 border-t border-brand-border">
                     <div class="flex -space-x-2">
                         <img class="w-9 h-9 rounded-full border-2 border-brand-navy object-cover" src="https://github.com/cpg-studio/forever-in-paralay/blob/main/headshots1%20Large.jpeg?raw=true" alt="">
@@ -329,14 +316,10 @@ animation: {
                     <p class="text-gray-400 text-sm"><span class="text-brand-cream font-bold">500+</span> winning bettors on Whop</p>
                 </div>
             </div>
-
         </div>
     </section>
-    <!-- ═══════════════════════════════════════════════════════════
-         PROOF MARQUEE — moved up: hit them with receipts immediately
-         ═══════════════════════════════════════════════════════════ -->
-                   <section id="proof" class="py-20 bg-brand-surface/40 border-y border-brand-border overflow-hidden relative">
-        
+
+    <section id="proof" class="py-20 bg-brand-surface/40 border-y border-brand-border overflow-hidden relative">
         <div class="text-center mb-12 reveal relative z-30 px-4">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest uppercase mb-4">
                 Verified Wins
@@ -347,7 +330,6 @@ animation: {
 
         <div class="track-container w-full relative pt-4 pb-8">
             <div id="receipt-slider" class="flex overflow-x-auto overflow-y-hidden touch-pan-x hide-scrollbar w-full gap-4 md:gap-8 px-4 md:px-8 py-4 items-center cursor-grab active:cursor-grabbing">
-                
                 <div class="relative shrink-0 h-48 md:h-64 lg:h-80 w-auto rounded-xl lg:rounded-2xl overflow-hidden border border-brand-border bg-brand-surface card-3d flex items-center justify-center cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
                     <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-brand-blue/10 transition duration-300"></div>
                     <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1387.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="Bet Slip">
@@ -413,7 +395,6 @@ animation: {
                     <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10 group-hover:bg-brand-blue/10 transition duration-300"></div>
                     <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_1885.JPG?raw=true" class="h-full w-auto max-w-none object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 select-none" draggable="false" alt="">
                 </div>
-
             </div>
         </div>
 
@@ -436,23 +417,21 @@ animation: {
             </div>
         </div>
     </section>
-         <!-- ═══════════════════════════════════════════════════════════
-         PHILOSOPHY / SYSTEM — now they're hyped, explain the why
-         ═══════════════════════════════════════════════════════════ -->
+
     <section id="philosophy" class="py-24 relative border-t border-brand-border">
-  <div class="absolute inset-0 overflow-hidden pointer-events-none flex justify-center items-center z-0">
-    <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" 
-         alt="" 
-         class="w-[800px] md:w-[1200px] h-auto opacity-[0.03] animate-pulse-scale mix-blend-screen">
-</div>        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none flex justify-center items-center z-0">
+            <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" alt="" class="w-[800px] md:w-[1200px] h-auto opacity-[0.03] animate-pulse-scale mix-blend-screen">
+        </div>        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-brand-blue text-xs font-bold tracking-widest uppercase mb-4">
                     The System
                 </div>
                <h2 class="text-4xl md:text-5xl font-extrabold text-brand-cream mb-4 tracking-tight leading-[1.1] md:leading-[1.1]">
-    Built on <span class="italic text-brand-blue">Logic.</span> <br/>
-    Fueled by <span class="italic text-brand-amber">Edge.</span>
-</h2>                <p class="text-gray-400 max-w-2xl mx-auto text-lg">We don't chase losses. We don't sell fantasies. We grind out a measurable, mathematical edge — every single day.</p>
+                    Built on <span class="italic text-brand-blue">Logic.</span> <br/>
+                    Fueled by <span class="italic text-brand-amber">Edge.</span>
+                </h2>                
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">We don't chase losses. We don't sell fantasies. We grind out a measurable, mathematical edge — every single day.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -490,18 +469,11 @@ animation: {
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         HIGHLIGHT VIDEO — baseball broadcast clip (16:9, autoplay
-         loop muted, with unmute toggle). "When the call cashes."
-         ═══════════════════════════════════════════════════════════ -->
     <section id="highlight" class="py-24 relative border-t border-brand-border overflow-hidden">
-        <!-- Theme glow blobs -->
         <div class="absolute top-[-20%] left-[-5%] w-[500px] h-[500px] bg-brand-blue/15 blur-[150px] rounded-full mix-blend-screen pointer-events-none"></div>
         <div class="absolute bottom-[-20%] right-[-5%] w-[500px] h-[500px] bg-brand-amber/10 blur-[150px] rounded-full mix-blend-screen pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-            <!-- Section header -->
             <div class="text-center mb-12 reveal">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest uppercase mb-4">
                     🔥 Highlight Of The Week
@@ -512,37 +484,19 @@ animation: {
                 <p class="text-gray-400 max-w-2xl mx-auto text-lg">One swing. One play. The difference between a slip that loses and a slip that prints. This is the moment our read paid off.</p>
             </div>
 
-            <!-- Video frame with corner brackets -->
             <div class="relative max-w-4xl mx-auto reveal">
-
-                <!-- Decorative corner brackets -->
                 <div class="absolute -top-3 -left-3 w-12 h-12 border-t-2 border-l-2 border-brand-amber pointer-events-none z-30"></div>
                 <div class="absolute -top-3 -right-3 w-12 h-12 border-t-2 border-r-2 border-brand-amber pointer-events-none z-30"></div>
                 <div class="absolute -bottom-3 -left-3 w-12 h-12 border-b-2 border-l-2 border-brand-amber pointer-events-none z-30"></div>
                 <div class="absolute -bottom-3 -right-3 w-12 h-12 border-b-2 border-r-2 border-brand-amber pointer-events-none z-30"></div>
 
                 <div class="relative rounded-2xl overflow-hidden border border-brand-border bg-brand-surface glow-blue shadow-2xl aspect-video">
-                    <!-- HIGHLIGHT VIDEO — silent autoplay loop -->
-                    <video
-                        id="highlight-video"
-                        src="https://res.cloudinary.com/di5mtaspk/video/upload/f_auto,q_auto/v1779575130/Sequence_03_xffgzz.mp4"
-                        poster="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0888%20Large.jpeg?raw=true"
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        class="w-full h-full object-cover"
-                    ></video>
-
-                    <!-- Top gradient + LIVE badge -->
+                    <video id="highlight-video" src="https://res.cloudinary.com/di5mtaspk/video/upload/f_auto,q_auto/v1779575130/Sequence_03_xffgzz.mp4" poster="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0888%20Large.jpeg?raw=true" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
                     <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/50 via-transparent to-brand-navy/40 pointer-events-none z-10"></div>
-
                     <div class="absolute top-4 left-4 glass px-3 py-1.5 rounded-md flex items-center gap-2 z-20">
                         <span class="live-dot"></span>
                         <span class="text-xs font-bold uppercase tracking-widest">Game Of The Week · MLB</span>
                     </div>
-
-                    <!-- Bottom caption bar -->
                     <div class="absolute bottom-0 inset-x-0 p-5 z-20 pointer-events-none">
                         <div class="glass rounded-lg px-4 py-3 flex items-center justify-between gap-4">
                             <div>
@@ -563,7 +517,6 @@ animation: {
                 </div>
             </div>
 
-            <!-- CTA below -->
             <div class="text-center mt-12 reveal">
                 <p class="text-gray-300 text-lg mb-6 font-light">Want the read <span class="text-brand-cream font-semibold">before</span> the first pitch?</p>
                 <a href="#pricing" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-extrabold rounded-lg transition transform hover:-translate-y-1 glow-amber-strong uppercase tracking-wide">
@@ -574,24 +527,67 @@ animation: {
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         LIFESTYLE / COMMUNITY
-         ═══════════════════════════════════════════════════════════ -->
-               <section id="lifestyle" class="py-24 relative bg-brand-surface/20 border-t border-brand-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="war-room" class="py-24 relative border-t border-brand-border bg-brand-surface/30 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
+            <div class="text-center mb-12 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-brand-blue text-xs font-bold tracking-widest uppercase mb-4">
+                    Sneak Peek
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-brand-cream mb-4 tracking-tight leading-[1.1]">
+                    Inside The <span class="italic text-brand-blue">War Room.</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">A live look at what happens when a premium play drops. The math is secure. The profits are shared.</p>
+            </div>
+
+            <div class="w-full max-w-2xl mx-auto relative group reveal delay-100">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue to-brand-amber rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+
+                <div class="glass rounded-2xl overflow-hidden relative shadow-2xl flex flex-col h-[500px]">
+                    <div class="bg-brand-surface/90 border-b border-brand-border px-6 py-4 flex items-center justify-between z-20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-navy flex items-center justify-center border border-brand-border text-brand-amber">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-brand-cream tracking-wide flex items-center gap-2">
+                                    VIP Telegram Feed
+                                    <svg class="w-4 h-4 text-brand-blue" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                </h3>
+                                <p class="text-xs text-brand-green flex items-center gap-1.5 mt-0.5 font-medium">
+                                    <span class="live-dot"></span> 502 Members Online
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="war-room-feed" class="flex-1 overflow-y-auto hide-scrollbar p-6 space-y-6 pb-32">
+                        </div>
+
+                    <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-brand-navy via-brand-navy/90 to-transparent flex items-end justify-center pb-8 px-6 z-20 pointer-events-none">
+                        <a href="#pricing" class="pointer-events-auto bg-brand-amber text-brand-navy font-extrabold px-8 py-3 rounded-xl uppercase tracking-widest shadow-[0_0_20px_rgba(245,185,61,0.3)] hover:scale-105 transition transform flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            Unlock Live Picks
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lifestyle" class="py-24 relative bg-brand-surface/20 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="block lg:hidden w-full reveal mb-8">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-brand-blue text-xs font-bold tracking-widest uppercase mb-4">
                     The Inner Circle
                 </div>
                 <h2 class="text-4xl md:text-5xl font-extrabold text-brand-cream leading-[1.1] tracking-tight">                        
-                    WINNING IS BETTER <br/> 
+                    WINNING IS BETTER<br/> 
                     <span class="italic text-brand-amber">Together.</span>
                 </h2>
             </div>
 
             <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-                
                 <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 h-[400px] sm:h-[500px] reveal">
                     <div class="rounded-3xl overflow-hidden relative group img-gradient border border-brand-border shadow-xl">
                         <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/IMG_0899%20Large.jpeg?raw=true" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Live Sports Lifestyle">
@@ -616,7 +612,6 @@ animation: {
                 </div>
 
                 <div class="w-full lg:w-1/2 reveal delay-200 mt-2 lg:mt-0">
-                    
                     <div class="hidden lg:block">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-brand-blue text-xs font-bold tracking-widest uppercase mb-4">
                             The Inner Circle
@@ -660,10 +655,7 @@ animation: {
         </div>
     </section>
     
-           <!-- ═══════════════════════════════════════════════════════════
-         TESTIMONIAL
-         ═══════════════════════════════════════════════════════════ -->
-  <section class="py-24 bg-brand-navy relative overflow-hidden border-t border-brand-border">
+    <section class="py-24 bg-brand-navy relative overflow-hidden border-t border-brand-border">
     <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0B1027/131A3A?text=+')] bg-cover bg-center opacity-10"></div>
     <div class="max-w-4xl mx-auto px-4 relative z-10 text-center reveal">
         <div class="flex justify-center mb-6">
@@ -689,17 +681,12 @@ animation: {
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         PRICING
-         ═══════════════════════════════════════════════════════════ -->
-            <section id="pricing" class="py-32 bg-brand-surface/20 border-t border-brand-border relative">
+    <section id="pricing" class="py-32 bg-brand-surface/20 border-t border-brand-border relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand-amber/10 blur-[150px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
-                
                 <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" alt="Forever In Parlay Logo" class="h-20 md:h-24 w-auto mx-auto object-contain mb-8 drop-shadow-[0_0_15px_rgba(96,165,250,0.15)]">
-
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest uppercase mb-4">
                     Get In
                 </div>
@@ -710,7 +697,6 @@ animation: {
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
-                
                 <div class="glass rounded-3xl border border-brand-border p-10 flex flex-col relative transition duration-300 hover:border-gray-500 reveal delay-100">
                     <div class="mb-8">
                         <h3 class="text-2xl font-bold text-brand-cream mb-2 tracking-wide">Top Pick Of The Day</h3>
@@ -778,16 +764,11 @@ animation: {
                         Join Bankroll Builder
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
     
-        <!-- ═══════════════════════════════════════════════════════════
-         FOOTER
-         ═══════════════════════════════════════════════════════════ -->
-         
-             <div id="lightbox" class="fixed inset-0 z-[100] bg-brand-navy/95 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-brand-navy/95 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
         <button onclick="closeLightbox()" class="absolute top-6 right-6 text-brand-cream hover:text-brand-amber transition z-50 p-2">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
@@ -796,21 +777,19 @@ animation: {
     
     <footer class="bg-brand-navy py-12 border-t border-brand-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-            
             <div class="flex items-center">
                 <img src="https://github.com/cpg-studio/forever-in-paralay/blob/main/LOGO.png?raw=true" alt="Forever In Parlay Logo" class="h-24 w-auto object-contain">
             </div>
             
             <p class="text-gray-500 text-xs text-center md:text-left max-w-2xl leading-relaxed">
                 <span class="font-bold text-gray-400"> 21+ only. Forever In Parlay is an information service. We do not accept wagers, hold deposits, or
-operate sportsbooks.
-Gamble responsibly. If you or someone you know has a gambling problem, call 1-800-GAMBLER or
-visit ncpgambling.org.
-Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sportsbook.
-© 2026 Forever In Parlay · All rights reserved.            </p>
+                operate sportsbooks. Gamble responsibly. If you or someone you know has a gambling problem, call 1-800-GAMBLER or
+                visit ncpgambling.org. Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sportsbook.
+                © 2026 Forever In Parlay · All rights reserved.</span>
+            </p>
 
         </div>
-            </footer>
+    </footer>
 
     <div id="fomo-toast" class="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-[100] transform translate-y-12 opacity-0 pointer-events-none transition-all duration-700 ease-out flex items-center max-w-[320px] w-[calc(100%-2rem)] md:w-auto">
         <div class="glass p-3 md:p-4 rounded-2xl border border-brand-border shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-start gap-3 md:gap-4 relative overflow-hidden group w-full">
@@ -849,11 +828,8 @@ Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sp
                 rootMargin: "0px 0px -50px 0px"
             });
             reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        });
-        
-                    // ═══════════════════════════════════════════════════════════
-            // SWIPEABLE MARQUEE & LIGHTBOX LOGIC (Perfect Infinite Loop)
-            // ═══════════════════════════════════════════════════════════
+
+            // SWIPEABLE MARQUEE & LIGHTBOX LOGIC
             const slider = document.getElementById('receipt-slider');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -864,109 +840,91 @@ Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sp
             let scrollLeft;
             let isAutoScrolling = true;
 
-            // 1. Smooth Infinite Auto-Scroll
             function autoScroll() {
                 if (isAutoScrolling && slider && !isDown) {
-                    slider.scrollLeft += 1; // Speed of scroll
-                    
-                    // The magic trick: Because the cards are duplicated exactly, 
-                    // when we scroll exactly 50% of the way, we reset to 0 seamlessly.
+                    slider.scrollLeft += 1; 
                     if (slider.scrollLeft >= (slider.scrollWidth / 2)) {
                         slider.scrollLeft = 0; 
                     }
                 }
                 requestAnimationFrame(autoScroll);
             }
-            requestAnimationFrame(autoScroll); // Kick off the animation
+            requestAnimationFrame(autoScroll); 
 
-            // 2. Mouse Drag Events (Desktop)
             slider.addEventListener('mousedown', (e) => {
                 isDown = true;
                 isDragging = false; 
-                isAutoScrolling = false; // Pause on click
+                isAutoScrolling = false; 
                 startX = e.pageX - slider.offsetLeft;
                 scrollLeft = slider.scrollLeft;
             });
             slider.addEventListener('mouseleave', () => {
                 isDown = false;
-                isAutoScrolling = true; // Resume if they drag out
+                isAutoScrolling = true; 
             });
             slider.addEventListener('mouseup', () => {
                 isDown = false;
-                isAutoScrolling = true; // Resume on release
+                isAutoScrolling = true; 
             });
             slider.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
                 e.preventDefault();
-                isDragging = true; // Flag that user is dragging, not clicking
+                isDragging = true; 
                 const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 1.5; // Drag speed multiplier
+                const walk = (x - startX) * 1.5; 
                 slider.scrollLeft = scrollLeft - walk;
             });
 
-            // 3. Hover Pause (Like the original CSS marquee)
             slider.addEventListener('mouseenter', () => {
                 if (!isDown) isAutoScrolling = false;
             });
 
-            // 4. Touch Events (Mobile Swiping)
             slider.addEventListener('touchstart', () => {
                 isAutoScrolling = false;
                 isDragging = false;
             });
             slider.addEventListener('touchmove', () => {
-                isDragging = true; // Flag that user is swiping
+                isDragging = true; 
             });
             slider.addEventListener('touchend', () => {
                 isAutoScrolling = true;
             });
 
-            // 5. Lightbox Functions
             window.openLightbox = function(imgSrc) {
-                // If they were just swiping/dragging, ignore the click
                 if (isDragging) return; 
-                
                 lightboxImg.src = imgSrc;
                 lightbox.classList.remove('opacity-0', 'pointer-events-none');
                 setTimeout(() => lightboxImg.classList.remove('scale-95'), 10);
-                isAutoScrolling = false; // Pause background slider while reading
+                isAutoScrolling = false; 
             };
 
             window.closeLightbox = function() {
                 lightbox.classList.add('opacity-0', 'pointer-events-none');
                 lightboxImg.classList.add('scale-95');
                 setTimeout(() => lightboxImg.src = '', 300);
-                isAutoScrolling = true; // Resume background slider
+                isAutoScrolling = true; 
             };
 
-            // Close lightbox if clicking the dark background
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) closeLightbox();
             });
             
-                        // ═══════════════════════════════════════════════════════════
             // MOBILE NAVIGATION MENU
-            // ═══════════════════════════════════════════════════════════
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = document.getElementById('menu-icon-path');
             const mobileLinks = document.querySelectorAll('.mobile-link');
-
             let isMenuOpen = false;
 
             function toggleMenu() {
                 isMenuOpen = !isMenuOpen;
                 if (isMenuOpen) {
-                    // Open menu
                     mobileMenu.classList.remove('max-h-0', 'opacity-0');
                     mobileMenu.classList.add('max-h-[400px]', 'opacity-100');
-                    // Morph icon to X
                     menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
                 } else {
-                    // Close menu
                     mobileMenu.classList.remove('max-h-[400px]', 'opacity-100');
                     mobileMenu.classList.add('max-h-0', 'opacity-0');
-                    // Morph icon back to Hamburger
                     menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
                 }
             }
@@ -975,120 +933,156 @@ Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sp
                 menuBtn.addEventListener('click', toggleMenu);
             }
 
-            // Automatically close the mobile menu when a link is clicked
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     if (isMenuOpen) toggleMenu();
                 });
             });
-            
-                    // ═══════════════════════════════════════════════════════════
-        // FOMO TOAST NOTIFICATIONS
-        // ═══════════════════════════════════════════════════════════
-        const fomoToast = document.getElementById('fomo-toast');
-        const fomoTitle = document.getElementById('fomo-title');
-        const fomoDesc = document.getElementById('fomo-desc');
-        const fomoTime = document.getElementById('fomo-time');
-        const fomoIconBg = document.getElementById('fomo-icon-bg');
-        const fomoIcon = document.getElementById('fomo-icon');
 
-        // SVG Path definitions for different alert types
-        const iconFire = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>';
-        const iconCheck = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
-        const iconCash = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+            // ═══════════════════════════════════════════════════════════
+            // VIP WAR ROOM FEED LOGIC
+            // ═══════════════════════════════════════════════════════════
+            const feed = document.getElementById("war-room-feed");
+            if (feed) {
+                const chatSequence = [
+                    { type: "member", user: "Mike T.", avatar: "M", time: "10:42 AM", text: "Bro that late night cash was insane 💰" },
+                    { type: "admin", user: "Founder", avatar: "👑", time: "10:45 AM", text: "🚨 <b>OFFICIAL PLAY DROP</b> 🚨<br/>Sport: NBA<br/>Play: <span class='redacted-block'><svg class='w-3 h-3' fill='none' stroke='currentColor' stroke-width='3' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'></path></svg> VIP ONLY</span><br/>Risk: 2 Units<br/>Notes: <span class='redacted-block'>REDACTED SYSTEM LOGIC</span>" },
+                    { type: "member", user: "Jason M.", avatar: "J", time: "10:46 AM", text: "Tailing! Put $500 on it. Let's eat 🍽️" },
+                    { type: "member", user: "Alex K.", avatar: "A", time: "10:48 AM", text: "Line is moving already, good catch." },
+                    { type: "admin", user: "Founder", avatar: "👑", time: "1:30 PM", text: "Boom. Cash it. Sweated a bit in the 3rd but math always wins. 🧹🧹" },
+                    { type: "member", user: "David R.", avatar: "D", time: "1:32 PM", text: "Easiest money I've made all week. Good looks!" },
+                    { type: "admin", user: "Founder", avatar: "👑", time: "Just now", text: "Loading up tonight's slate. Found a massive +EV spot on the late game. Dropping in 5 mins... 👀" }
+                ];
 
-        // Your rotation of fake/real notifications
-        // Edit these to match the exact vibe of your group
-        const notifications = [
-            {
-                title: "Jason M. joined",
-                desc: "Secured the Monthly Bankroll Builder pass.",
-                time: "Just now",
-                type: "join" // Blue checkmark
-            },
-            {
-                title: "Mike T. cashed",
-                desc: "Hit a +450 4-leg MLB parlay from the VIP chat.",
-                time: "2 mins ago",
-                type: "cash" // Green money icon
-            },
-            {
-                title: "David R. upgraded",
-                desc: "Locked in for another month of the system.",
-                time: "5 mins ago",
-                type: "join"
-            },
-            {
-                title: "Alex K. is printing",
-                desc: "Up 12.5 units this week using the straight bets.",
-                time: "12 mins ago",
-                type: "fire" // Amber fire icon
-            },
-            {
-                title: "Spot claimed",
-                desc: "Someone just grabbed a Day Pass to tail today's top pick.",
-                time: "Just now",
-                type: "fire"
+                let messageIndex = 0;
+
+                function createMessageElement(msg) {
+                    const div = document.createElement("div");
+                    div.className = "chat-message flex items-start gap-3";
+                    
+                    if (msg.type === "admin") {
+                        div.innerHTML = `
+                            <div class="w-8 h-8 rounded-full bg-brand-amber flex flex-shrink-0 items-center justify-center text-brand-navy font-bold text-xs shadow-[0_0_10px_rgba(245,185,61,0.5)]">
+                                ${msg.avatar}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <span class="font-bold text-brand-amber text-sm">${msg.user} <span class="bg-brand-amber/20 text-brand-amber px-1.5 py-0.5 rounded text-[9px] uppercase tracking-widest ml-1 border border-brand-amber/30">Admin</span></span>
+                                    <span class="text-[10px] text-gray-500">${msg.time}</span>
+                                </div>
+                                <div class="bg-brand-surface border border-brand-amber/30 rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-brand-cream shadow-lg leading-relaxed inline-block">
+                                    ${msg.text}
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        div.innerHTML = `
+                            <div class="w-8 h-8 rounded-full bg-brand-border flex flex-shrink-0 items-center justify-center text-gray-400 font-bold text-xs">
+                                ${msg.avatar}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <span class="font-medium text-gray-300 text-sm">${msg.user}</span>
+                                    <span class="text-[10px] text-gray-500">${msg.time}</span>
+                                </div>
+                                <div class="bg-brand-navy border border-brand-border rounded-2xl rounded-tl-sm px-4 py-2 text-sm text-gray-300 inline-block">
+                                    ${msg.text}
+                                </div>
+                            </div>
+                        `;
+                    }
+                    return div;
+                }
+
+                function dropNextMessage() {
+                    if (messageIndex < chatSequence.length) {
+                        const msg = chatSequence[messageIndex];
+                        const msgEl = createMessageElement(msg);
+                        feed.appendChild(msgEl);
+                        
+                        feed.scrollTo({ top: feed.scrollHeight, behavior: 'smooth' });
+                        messageIndex++;
+                        
+                        const nextDelay = Math.floor(Math.random() * (4000 - 1500 + 1)) + 1500;
+                        setTimeout(dropNextMessage, nextDelay);
+                    } else {
+                        setTimeout(() => {
+                            feed.innerHTML = '';
+                            messageIndex = 0;
+                            dropNextMessage();
+                        }, 10000);
+                    }
+                }
+                setTimeout(dropNextMessage, 1000);
             }
-        ];
-
-        let toastTimeout;
-
-        function showFomoToast() {
-            // Pick a random notification
-            const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
             
-            // Inject content
-            fomoTitle.textContent = randomNotif.title;
-            fomoDesc.textContent = randomNotif.desc;
-            fomoTime.textContent = randomNotif.time;
+            // ═══════════════════════════════════════════════════════════
+            // FOMO TOAST NOTIFICATIONS
+            // ═══════════════════════════════════════════════════════════
+            const fomoToast = document.getElementById('fomo-toast');
+            const fomoTitle = document.getElementById('fomo-title');
+            const fomoDesc = document.getElementById('fomo-desc');
+            const fomoTime = document.getElementById('fomo-time');
+            const fomoIconBg = document.getElementById('fomo-icon-bg');
+            const fomoIcon = document.getElementById('fomo-icon');
 
-            // Update styling based on type
-            if (randomNotif.type === 'join') {
-                fomoIconBg.className = 'w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-blue/20 border border-brand-blue/40 text-brand-blue';
-                fomoIcon.innerHTML = iconCheck;
-            } else if (randomNotif.type === 'cash') {
-                fomoIconBg.className = 'w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-green/20 border border-brand-green/40 text-brand-green';
-                fomoIcon.innerHTML = iconCash;
-            } else {
-                fomoIconBg.className = 'w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-amber/20 border border-brand-amber/40 text-brand-amber';
-                fomoIcon.innerHTML = iconFire;
+            const iconFire = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>';
+            const iconCheck = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+            const iconCash = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+
+            const notifications = [
+                { title: "Jason M. joined", desc: "Secured the Monthly Bankroll Builder pass.", time: "Just now", type: "join" },
+                { title: "Mike T. cashed", desc: "Hit a +450 4-leg MLB parlay from the VIP chat.", time: "2 mins ago", type: "cash" },
+                { title: "David R. upgraded", desc: "Locked in for another month of the system.", time: "5 mins ago", type: "join" },
+                { title: "Alex K. is printing", desc: "Up 12.5 units this week using the straight bets.", time: "12 mins ago", type: "fire" },
+                { title: "Spot claimed", desc: "Someone just grabbed a Day Pass to tail today's top pick.", time: "Just now", type: "fire" }
+            ];
+
+            let toastTimeout;
+
+            function showFomoToast() {
+                const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
+                
+                fomoTitle.textContent = randomNotif.title;
+                fomoDesc.textContent = randomNotif.desc;
+                fomoTime.textContent = randomNotif.time;
+
+                if (randomNotif.type === 'join') {
+                    fomoIconBg.className = 'w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-blue/20 border border-brand-blue/40 text-brand-blue';
+                    fomoIcon.innerHTML = iconCheck;
+                } else if (randomNotif.type === 'cash') {
+                    fomoIconBg.className = 'w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-green/20 border border-brand-green/40 text-brand-green';
+                    fomoIcon.innerHTML = iconCash;
+                } else {
+                    fomoIconBg.className = 'w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-amber/20 border border-brand-amber/40 text-brand-amber';
+                    fomoIcon.innerHTML = iconFire;
+                }
+
+                fomoToast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+                fomoToast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+                toastTimeout = setTimeout(() => { hideFomoToast(); }, 6000);
             }
 
-            // Animate IN
-            fomoToast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
-            fomoToast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            window.hideFomoToast = function() {
+                clearTimeout(toastTimeout);
+                fomoToast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                fomoToast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+            }
 
-            // Keep it on screen for 6 seconds, then hide
-            toastTimeout = setTimeout(() => {
-                hideFomoToast();
-            }, 6000);
-        }
+            function scheduleNextToast() {
+                const nextTime = Math.floor(Math.random() * (25000 - 12000 + 1)) + 12000;
+                setTimeout(() => {
+                    showFomoToast();
+                    scheduleNextToast(); 
+                }, nextTime);
+            }
 
-        window.hideFomoToast = function() {
-            clearTimeout(toastTimeout);
-            // Animate OUT
-            fomoToast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-            fomoToast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
-        }
-
-        // Cycle the notifications randomly between 12 and 25 seconds
-        function scheduleNextToast() {
-            const nextTime = Math.floor(Math.random() * (25000 - 12000 + 1)) + 12000;
             setTimeout(() => {
-                showFomoToast();
-                scheduleNextToast(); // loop it
-            }, nextTime);
-        }
-
-     // Kick off the first toast immediately (with a tiny 1-second delay so the page loads first)
-setTimeout(() => {
-    showFomoToast(); // Show the first one right now
-    scheduleNextToast(); // Start the loop for the next ones
-}, 3000); 
-
+                showFomoToast(); 
+                scheduleNextToast(); 
+            }, 1000);
+        });
     </script>
-    
-
 </body>
 </html>

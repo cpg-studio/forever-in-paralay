@@ -810,7 +810,9 @@ Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sp
 © 2026 Forever In Parlay · All rights reserved.            </p>
 
         </div>
-            <div id="fomo-toast" class="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-[100] transform translate-y-12 opacity-0 pointer-events-none transition-all duration-700 cubic-bezier(0.5, 0, 0, 1) flex items-center max-w-[320px] w-[calc(100%-2rem)] md:w-auto">
+            </footer>
+
+    <div id="fomo-toast" class="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-[100] transform translate-y-12 opacity-0 pointer-events-none transition-all duration-700 ease-out flex items-center max-w-[320px] w-[calc(100%-2rem)] md:w-auto">
         <div class="glass p-3 md:p-4 rounded-2xl border border-brand-border shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-start gap-3 md:gap-4 relative overflow-hidden group w-full">
             <div class="absolute inset-0 bg-gradient-to-tr from-brand-amber/5 to-transparent pointer-events-none"></div>
             
@@ -829,9 +831,6 @@ Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sp
             </button>
         </div>
     </div>
-        
-       
-    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1082,8 +1081,12 @@ Not affiliated with Major League Baseball, the NBA, NFL, NHL, or any licensed sp
             }, nextTime);
         }
 
-        // Kick off the first toast 8 seconds after the user lands on the page
-        setTimeout(scheduleNextToast, 8000);
+     // Kick off the first toast immediately (with a tiny 1-second delay so the page loads first)
+setTimeout(() => {
+    showFomoToast(); // Show the first one right now
+    scheduleNextToast(); // Start the loop for the next ones
+}, 3000); 
+
     </script>
     
 

@@ -938,6 +938,38 @@ animation: {
                     if (isMenuOpen) toggleMenu();
                 });
             });
+            // Replace your stats intersection observer logic or add this inside DOMContentLoaded
+const counters = document.querySelectorAll('.text-5xl, .text-6xl');
+const speed = 100;
+
+const animateCounters = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseFloat(counter.innerText.replace(/[+%★]/g, ''));
+            const isFloat = counter.innerText.includes('.');
+            let count = 0;
+            
+            const updateCount = () => {
+                const inc = target / speed;
+                if(count < target) {
+                    count += inc;
+                    counter.innerText = (counter.innerText.includes('+') ? '+' : '') + 
+                                        (isFloat ? count.toFixed(1) : Math.floor(count)) + 
+                                        (counter.innerText.includes('%') ? '%' : '') +
+                                        (counter.innerText.includes('★') ? '★' : '');
+                    setTimeout(updateCount, 10);
+                } else {
+                    counter.innerText = (counter.innerText.includes('+') ? '+' : '') + target + (counter.innerText.includes('%') ? '%' : '') + (counter.innerText.includes('★') ? '★' : '');
+                }
+            };
+            updateCount();
+            observer.unobserve(counter);
+        }
+    });
+}, { threshold: 0.5 });
+
+counters.forEach(c => animateCounters.observe(c));
 
             // ═══════════════════════════════════════════════════════════
             // VIP WAR ROOM FEED LOGIC

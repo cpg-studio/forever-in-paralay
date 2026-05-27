@@ -398,24 +398,24 @@ animation: {
             </div>
         </div>
 
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 reveal pointer-events-none">
-            <div class="text-center">
-                <p class="text-5xl md:text-6xl font-extrabold text-brand-amber">68%</p>
-                <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Hit Rate</p>
-            </div>
-            <div class="text-center">
-                <p class="text-5xl md:text-6xl font-extrabold text-brand-cream">+24.5</p>
-                <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Units / Month</p>
-            </div>
-            <div class="text-center">
-                <p class="text-5xl md:text-6xl font-extrabold text-brand-blue">500+</p>
-                <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Active Bettors</p>
-            </div>
-            <div class="text-center">
-                <p class="text-5xl md:text-6xl font-extrabold text-brand-green">5.0★</p>
-                <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Whop Rating</p>
-            </div>
-        </div>
+       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 reveal pointer-events-none">
+    <div class="text-center">
+        <p class="text-5xl md:text-6xl font-extrabold text-brand-amber" data-count>68%</p>
+        <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Hit Rate</p>
+    </div>
+    <div class="text-center">
+        <p class="text-5xl md:text-6xl font-extrabold text-brand-cream" data-count>+24.5</p>
+        <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Units / Month</p>
+    </div>
+    <div class="text-center">
+        <p class="text-5xl md:text-6xl font-extrabold text-brand-blue" data-count>500+</p>
+        <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Active Bettors</p>
+    </div>
+    <div class="text-center">
+        <p class="text-5xl md:text-6xl font-extrabold text-brand-green" data-count>5.0★</p>
+        <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Whop Rating</p>
+    </div>
+</div>
     </section>
 
     <section id="philosophy" class="py-24 relative border-t border-brand-border">
@@ -937,37 +937,39 @@ animation: {
                 link.addEventListener('click', () => {
                     if (isMenuOpen) toggleMenu();
                 });
-            });
-            // Replace your stats intersection observer logic or add this inside DOMContentLoaded
-const counters = document.querySelectorAll('.text-5xl, .text-6xl');
+            })
+// Safe isolated counter logic
+const counters = document.querySelectorAll('[data-count]');
 const speed = 100;
 
 const animateCounters = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if(entry.isIntersecting) {
             const counter = entry.target;
-            const target = parseFloat(counter.innerText.replace(/[+%★]/g, ''));
-            const isFloat = counter.innerText.includes('.');
+            const originalText = counter.innerText;
+            const target = parseFloat(originalText.replace(/[+%★]/g, ''));
+            const isFloat = originalText.includes('.');
             let count = 0;
             
             const updateCount = () => {
                 const inc = target / speed;
                 if(count < target) {
                     count += inc;
-                    counter.innerText = (counter.innerText.includes('+') ? '+' : '') + 
+                    counter.innerText = (originalText.includes('+') ? '+' : '') + 
                                         (isFloat ? count.toFixed(1) : Math.floor(count)) + 
-                                        (counter.innerText.includes('%') ? '%' : '') +
-                                        (counter.innerText.includes('★') ? '★' : '');
+                                        (originalText.includes('%') ? '%' : '') +
+                                        (originalText.includes('★') ? '★' : '') +
+                                        (originalText.includes('+') && !originalText.startsWith('+') ? '+' : ''); // handles the 500+ formatting
                     setTimeout(updateCount, 10);
                 } else {
-                    counter.innerText = (counter.innerText.includes('+') ? '+' : '') + target + (counter.innerText.includes('%') ? '%' : '') + (counter.innerText.includes('★') ? '★' : '');
+                    counter.innerText = originalText;
                 }
             };
             updateCount();
             observer.unobserve(counter);
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.2 });
 
 counters.forEach(c => animateCounters.observe(c));
 

@@ -973,6 +973,16 @@ const animateCounters = new IntersectionObserver((entries, observer) => {
 
 counters.forEach(c => animateCounters.observe(c));
 
+                      // Stop browser from restoring previous scroll position on reload
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    // Force top on every load (covers refresh, back/forward, and bfcache)
+    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) window.scrollTo(0, 0); // bfcache restore (Safari/Firefox)
+    });
+
             // ═══════════════════════════════════════════════════════════
             // VIP WAR ROOM FEED LOGIC
             // ═══════════════════════════════════════════════════════════
